@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8014479488150382742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.01, y: -14.01, z: -10.673917}
+  m_LocalPosition: {x: 11.01, y: -14.01, z: 0}
   m_LocalScale: {x: 7.5, y: 7.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -98,7 +98,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.000000014901161, y: -0.0010825396}
@@ -147,6 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f712784a5878478f85a9c82e2fb1cf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fireDelaySec: 0.25
+  _bulletPrefab: {fileID: -3232129951431570189, guid: 60960aca6276a4f59983fa2cceda6a73,
+    type: 3}
+  _side: 0
 --- !u!114 &-2682826619808305142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983b1dc575f2c47b7923f90804abcd8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _speed: 5
 --- !u!114 &2978749577239098610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +176,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e705f6824857f4a75934ec6da38bb5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveComponent: {fileID: -2682826619808305142}
+  _fireComponent: {fileID: -3987305858475581080}
+  _move:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ca185f8a-e65a-4ce0-b411-72ac6910d18a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: 7376db44-04b3-4e60-b08c-8f448188f79b
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 4
+    - m_Name: up
+      m_Id: d7979243-3eb6-4600-bde0-a5aea2769ba7
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 2786c291-fdd7-4b6b-b9ed-d3827aa0ef1a
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 56959a0d-d334-4eeb-8991-64ff1cdad4de
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 3fdf20b4-62c9-47da-8dce-685340f5b86e
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Move
+      m_Flags: 8
+    m_Flags: 0
+  _fire:
+    m_Name: Fire
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 3bdbf44d-56a1-40ca-842c-93e04dff9ddb
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 615affc8-ab65-43f8-98f7-45a83f0b10be
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Fire
+      m_Flags: 0
+    m_Flags: 0
 --- !u!114 &7684457377716949672
 MonoBehaviour:
   m_ObjectHideFlags: 0

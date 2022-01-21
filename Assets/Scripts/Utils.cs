@@ -16,23 +16,29 @@ namespace Tanks2D.Utils
         static MoveExtensions()
         {
             _directions = new Dictionary<MoveDirection, Vector3> {
-                { MoveDirection.Top, Vector3.zero },
-                { MoveDirection.Bottom, new Vector3(0f, 0f, 270f) },
-                { MoveDirection.Left, new Vector3(0f, 0f, 180f) },
-                { MoveDirection.Right, new Vector3(0f, 0f, 90f) },
+                { MoveDirection.Top, new Vector3(0f, 1f, 0f) },
+                { MoveDirection.Bottom, new Vector3(0f, -1f, 0f) },
+                { MoveDirection.Left, new Vector3(1f, 0f, 0f) },
+                { MoveDirection.Right, new Vector3(-1f, 0f, 0f) },
                 { MoveDirection.None, Vector3.zero }
             };
             _rotations = new Dictionary<MoveDirection, Vector3> {
-                { MoveDirection.Top, Vector3.up },
-                { MoveDirection.Bottom, Vector3.down },
-                { MoveDirection.Left, Vector3.back },
-                { MoveDirection.Right, Vector3.forward },
-                { MoveDirection.None, Vector3.up }
+                { MoveDirection.Top, Vector3.zero },
+                { MoveDirection.Bottom, new Vector3(0f, 0f, 180f) },
+                { MoveDirection.Left, new Vector3(0f, 0f, 270f) },
+                { MoveDirection.Right, new Vector3(0f, 0f, 90f) },
+                { MoveDirection.None, Vector3.zero }
             };
         }
 
         public static Vector3 GetDirectionVector(this MoveDirection direction) => _directions[direction];
         public static Vector3 GetRotatonVector(this MoveDirection direction) => _rotations[direction];
-        public static MoveDirection GetMoveDirection(this Vector3 vector) => _directions.First(pair => pair.Value == vector).Key;
+        public static MoveDirection GetMoveDirectionFromDirection(this Vector3 vector) => _directions.First(pair => pair.Value == vector).Key;
+        public static MoveDirection GetMoveDirectionFromRotation(this Vector2 vector)
+        {
+            var vector3 = (Vector3)vector;
+            return _directions.First(pair => pair.Value == vector3).Key;
+        }
+        public static MoveDirection GetMoveDirectionFromRotation(this Vector3 vector) => _rotations.First(pair => pair.Value == vector).Key;
     }
 }

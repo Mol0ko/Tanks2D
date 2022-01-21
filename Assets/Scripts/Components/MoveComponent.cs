@@ -1,21 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Tanks2D.Utils;
 using UnityEngine;
 
 namespace Tanks2D.Component
 {
     public class MoveComponent : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField, Min(0f)]
+        private float _speed = 1f;
 
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+        public void OnMove(MoveDirection direction, in float time) {
+            transform.eulerAngles = direction.GetRotatonVector();
+            transform.position += direction.GetDirectionVector() * time * _speed;
         }
     }
 }
