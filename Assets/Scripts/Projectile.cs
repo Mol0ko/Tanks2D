@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Tanks2D.Component;
+﻿using Tanks2D.Component;
 using Tanks2D.Utils;
 using UnityEngine;
 
@@ -24,12 +22,29 @@ namespace Tanks2D
 
         private void Start()
         {
-            Destroy(this, _lifetimeSec);
+            Destroy(gameObject, _lifetimeSec);
         }
 
         private void Update()
         {
             _moveComponent.OnMove(_moveDirection, Time.deltaTime);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            var targetName = other.gameObject.name.ToLower();
+            Debug.Log("BULLET COLLISION: " + targetName);
+            if (targetName.Contains("brick") || targetName.Contains("enemy"))
+            {
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+            }
+            else if (targetName.Contains("solidblock"))
+                Destroy(gameObject);
+            else if (targetName.Contains("base")) {
+                Destroy(gameObject);
+                FindObjectOfType<GameManager>().GameOver();
+            }
         }
     }
 }
