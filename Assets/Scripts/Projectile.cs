@@ -34,14 +34,25 @@ namespace Tanks2D
         {
             var targetName = other.gameObject.name.ToLower();
             Debug.Log("BULLET COLLISION: " + targetName);
-            if (targetName.Contains("brick") || targetName.Contains("enemy"))
+            if (targetName.Contains("brick"))
             {
                 Destroy(other.gameObject);
                 Destroy(gameObject);
             }
             else if (targetName.Contains("solidblock"))
                 Destroy(gameObject);
-            else if (targetName.Contains("base")) {
+            else if (targetName.Contains("enemy") && _side == Side.Player)
+            {
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+            }
+            else if (targetName.Contains("player") && _side == Side.Enemy)
+            {
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+            }
+            else if (targetName.Contains("base"))
+            {
                 Destroy(gameObject);
                 FindObjectOfType<GameManager>().GameOver();
             }

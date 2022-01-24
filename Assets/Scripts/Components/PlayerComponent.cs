@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Tanks2D.Utils;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.InputSystem;
 namespace Tanks2D.Component
 {
     [RequireComponent(typeof(MoveComponent), typeof(FireComponent))]
-    public class TargetComponent : MonoBehaviour
+    public class PlayerComponent : MonoBehaviour
     {
         private MoveDirection _lastMove;
 
@@ -21,9 +22,20 @@ namespace Tanks2D.Component
         [SerializeField]
         private InputAction _fire;
 
+        public bool IgnoreDamage { get; private set; } = false;
+
         private void Start()
         {
 
+        }
+
+        private IEnumerator IgnoreDamageAnimation() {
+            var ignoreTimeMillisecs = 3000;
+            var startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            while (DateTimeOffset.Now.ToUnixTimeMilliseconds() < (startTime + ignoreTimeMillisecs)) {
+                var color = GetComponent<Renderer>().material.color;
+                // TODO: fade in-out
+            }
         }
 
         private void Update()
