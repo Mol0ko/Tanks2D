@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Tanks2D.Component
 {
-    [RequireComponent(typeof(MoveComponent), typeof(FireComponent))]
+    [RequireComponent(typeof(MoveComponent), typeof(FireComponent), typeof(IgnoreDamageComponent))]
     public class PlayerComponent : MonoBehaviour
     {
         private MoveDirection _lastMove;
@@ -16,26 +16,21 @@ namespace Tanks2D.Component
         private MoveComponent _moveComponent;
         [SerializeField]
         private FireComponent _fireComponent;
+        [SerializeField]
+        private IgnoreDamageComponent _ignoreDamageComponent;
 
         [SerializeField]
         private InputAction _move;
         [SerializeField]
         private InputAction _fire;
 
-        public bool IgnoreDamage { get; private set; } = false;
+        public bool IgnoreDamage { 
+            get => _ignoreDamageComponent.enabled; 
+        }
 
         private void Start()
         {
-
-        }
-
-        private IEnumerator IgnoreDamageAnimation() {
-            var ignoreTimeMillisecs = 3000;
-            var startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-            while (DateTimeOffset.Now.ToUnixTimeMilliseconds() < (startTime + ignoreTimeMillisecs)) {
-                var color = GetComponent<Renderer>().material.color;
-                // TODO: fade in-out
-            }
+            StartCoroutine(IgnoreDamageOnStart());
         }
 
         private void Update()
@@ -64,9 +59,9 @@ namespace Tanks2D.Component
                 MoveDirection direction;
                 if (directionVector.x != 0f && directionVector.y != 0f)
                     direction = _lastMove;
-                else 
+                else
                     direction = _lastMove = directionVector.GetMoveDirectionFromRotation();
-                
+
                 _moveComponent.OnMove(direction, Time.deltaTime);
             }
         }
@@ -76,6 +71,13 @@ namespace Tanks2D.Component
             var button = _fire.ReadValue<float>();
             if (button == 1f)
                 _fireComponent.OnFire();
+        }
+
+        private IEnumerator IgnoreDamageOnStart()
+        {
+            _ignoreDamageComponent.enabled = true;
+            yield return new WaitForSeconds(3f);
+            _ignoreDamageComponent.enabled = false;
         }
     }
 }

@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveComponent: {fileID: -2682826619808305142}
   _fireComponent: {fileID: -3987305858475581080}
+  _ignoreDamageComponent: {fileID: 7684457377716949672}
   _move:
     m_Name: Move
     m_Type: 0
@@ -253,6 +254,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8014479488150382742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e609bb833f49401a9cdb8da18e77df4, type: 3}
+  m_Script: {fileID: 11500000, guid: ffb9cc39cb25b4973b70357078766f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 8014479488150382745}
