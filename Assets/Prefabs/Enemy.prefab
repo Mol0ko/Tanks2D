@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackDelaySec: 1.5
+  _moveAiDelaySec: 3
   _spriteRenderer: {fileID: 8986635443706452151}
   _tankSprites:
   - {fileID: 2909458258800530498, guid: 09bac952bc5654a1b8e78e8014c70f78, type: 3}
@@ -45,11 +46,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8014479488150382743, guid: bb99123a15ee74fd99227b21c5b53e9c,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8014479488150382745, guid: bb99123a15ee74fd99227b21c5b53e9c,
         type: 3}

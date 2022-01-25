@@ -20,6 +20,8 @@ namespace Tanks2D
         [SerializeField]
         private Text _gameOverText;
 
+        private int _playerHp = 5;
+
         private void FixedUpdate()
         {
             SpawnPlayer();
@@ -32,6 +34,13 @@ namespace Tanks2D
                 var newPlayer = Instantiate(_playerPrefab, _spawnPoint.position, new Quaternion());
                 _player = newPlayer;
             }
+        }
+
+        public void OnPlayerKill()
+        {
+            _playerHp--;
+            if (_playerHp <= 0)
+                GameOver();
         }
 
         public void GameOver()

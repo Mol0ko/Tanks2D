@@ -49,10 +49,11 @@ namespace Tanks2D
             else if (targetName.Contains("player") && _side == Side.Enemy)
             {
                 var ignoreDamage = other.gameObject.GetComponent<PlayerComponent>().IgnoreDamage;
-                if (ignoreDamage)
+                if (!ignoreDamage)
                 {
                     Destroy(other.gameObject);
                     Destroy(gameObject);
+                    FindObjectOfType<GameManager>().OnPlayerKill();
                 }
             }
             else if (targetName.Contains("base"))

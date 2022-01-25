@@ -19,6 +19,8 @@ namespace Tanks2D.Component
         [SerializeField]
         private IgnoreDamageComponent _ignoreDamageComponent;
 
+        [SerializeField, Range(0.5f, 8f)]
+        private float _ignoreDamageSeconds = 3f;
         [SerializeField]
         private InputAction _move;
         [SerializeField]
@@ -76,7 +78,7 @@ namespace Tanks2D.Component
         private IEnumerator IgnoreDamageOnStart()
         {
             _ignoreDamageComponent.enabled = true;
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(_ignoreDamageSeconds);
             _ignoreDamageComponent.enabled = false;
         }
     }
