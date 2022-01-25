@@ -20,7 +20,10 @@ namespace Tanks2D
         [SerializeField]
         private Text _gameOverText;
 
+        [SerializeField]
         private int _playerHp = 5;
+        [SerializeField]
+        private int _enemyHp = 10;
 
         private void FixedUpdate()
         {
@@ -41,6 +44,17 @@ namespace Tanks2D
             _playerHp--;
             if (_playerHp <= 0)
                 GameOver();
+        }
+
+        public void OnEnemyKill()
+        {
+            _enemyHp--;
+            if (_enemyHp <= 0)
+            {
+                _gameOverText.text = "YOU WIN!";
+                _gameOverText.gameObject.SetActive(true);
+                StartCoroutine(GameOverRoutine());
+            }
         }
 
         public void GameOver()

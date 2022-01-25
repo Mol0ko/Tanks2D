@@ -45,6 +45,7 @@ namespace Tanks2D
             {
                 Destroy(other.gameObject);
                 Destroy(gameObject);
+                FindObjectOfType<GameManager>().OnEnemyKill();
             }
             else if (targetName.Contains("player") && _side == Side.Enemy)
             {
